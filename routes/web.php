@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
+Route::resource('cliente', 'App\Http\Controllers\ClienteController');
+
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dash', function () {
     return view('dash.index');
 })->name('dash');
