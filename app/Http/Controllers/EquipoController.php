@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Cliente;
+use App\Models\Equipo;
 
-class ClienteController extends Controller
+
+class EquipoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes=Cliente::all();
-        return view('cliente.index')->with('clientes',$clientes);
+        $equipos=Equipo::all();
+        return view('equipo.index')->with('equipo',$equipos);
     }
 
     /**
@@ -25,7 +26,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        return view('cliente.create');
+        return view('equipo.create');
     }
 
     /**
@@ -36,14 +37,11 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $clientes = new Cliente();
-        $clientes->nombre =$request->get('nombre');
-        $clientes->direccion =$request->get('direccion');
-        $clientes->telefono =$request->get('telefono');
+        $equipos = new Equipo();
+        $equipos->descripcion =$request->get('nombre');
+        $equipos->save();
 
-        $clientes->save();
-
-        return redirect('/cliente'); 
+        return redirect('/equipo'); 
     }
 
     /**
@@ -65,8 +63,8 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        $cliente = Cliente::find($id);
-        return view('cliente.edit')->with('cliente',$cliente);
+        $equipo = Equipo::find($id);
+        return view('equipo.edit')->with('equipo',$equipo);
     }
 
     /**
@@ -78,14 +76,11 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cliente = Cliente::find($id);
-        $cliente->nombre =$request->get('nombre');
-        $cliente->direccion =$request->get('direccion');
-        $cliente->telefono =$request->get('telefono');
+        $equipo = Equipo::find($id);
+        $equipo->descripcion =$request->get('nombre');
+        $equipo->save();
 
-        $cliente->save();
-
-        return redirect('/cliente'); 
+        return redirect('/equipo'); 
     }
 
     /**
@@ -96,15 +91,9 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        $cliente = Cliente::findOrFail($id);
-        $cliente->delete();
+        $equipo = Equipo::findOrFail($id);
+        $equipo->delete();
 
-        return redirect('/cliente')->with('success', 'empleado eliminado correctamente.');;
-    }
-    public function clientes() {
-        $clientes = cliente::with('nombre')->get();
-        $nombres = nombre::all();
-
-        return view('recepcion.create', compact('clientes', 'nombres'));
+        return redirect('/equipo')->with('success', 'empleado eliminado correctamente.');;
     }
 }

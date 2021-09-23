@@ -241,30 +241,46 @@ return [
  //         'type' => 'sidebar-menu-search',
  //         'text' => 'search',
  //     ],
+        ['header' => 'ADMINISTRACION'],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Inicio',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
+            'text'        => 'Dashboard',
+            'url'         => 'dash',
+            'icon'        => 'fas fa-tachometer-alt',
             'label_color' => 'success',
         ],
         [
-            'text'        => 'Nueva Orden',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
+            'text'        => 'Recepcion',
+            'url'         => 'recepcion',
+            'icon'        => 'fas fa-laptop-medical',
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Servicios',
+            'url'         => 'servicio',
+            'icon'        => 'fas fa-tools',
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Equipos',
+            'url'         => 'equipo',
+            'icon'        => 'fas fa-desktop',
             'label_color' => 'success',
         ],
         [
             'text'        => 'Clientes',
             'url'         => 'cliente',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
+            'icon'        => 'fas fa-address-card',
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Empleados',
+            'url'         => 'empleado',
+            'icon'        => 'fas fa-address-card',
             'label_color' => 'success',
         ],
         ['header' => 'account_settings'],
@@ -316,22 +332,22 @@ return [
                 ],
             ],
         ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
+//        ['header' => 'labels'],
+//        [
+//            'text'       => 'important',
+//            'icon_color' => 'red',
+//            'url'        => '#',
+//        ],
+//        [
+//            'text'       => 'warning',
+//            'icon_color' => 'yellow',
+//            'url'        => '#',
+//       ],
+//        [
+//            'text'       => 'information',
+//            'icon_color' => 'cyan',
+//            'url'        => '#',
+//        ],
     ],
 
     /*
@@ -370,36 +386,36 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
             ],
         ],
         'Select2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
                 ],
             ],

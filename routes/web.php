@@ -19,6 +19,9 @@ Route::get('/', function () {
 
 
 Route::resource('cliente', 'App\Http\Controllers\ClienteController');
+Route::resource('equipo', 'App\Http\Controllers\EquipoController');
+Route::resource('recepcion', 'App\Http\Controllers\RecepcionController');
+Route::resource('servicio', 'App\Http\Controllers\RecepcionController');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dash', function () {
