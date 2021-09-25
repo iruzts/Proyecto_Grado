@@ -248,21 +248,9 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Dashboard',
-            'url'         => 'dash',
-            'icon'        => 'fas fa-tachometer-alt',
-            'label_color' => 'success',
-        ],
-        [
             'text'        => 'Recepcion',
             'url'         => 'recepcion',
             'icon'        => 'fas fa-laptop-medical',
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => 'Servicios',
-            'url'         => 'servicio',
-            'icon'        => 'fas fa-tools',
             'label_color' => 'success',
         ],
         [
@@ -279,11 +267,36 @@ return [
         ],
         [
             'text'        => 'Empleados',
-            'url'         => 'empleado',
             'icon'        => 'fas fa-address-card',
             'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Lista de Empleados',
+                    'url'  => 'empleado',
+                ],
+                [
+                    'text' => 'Categoria',
+                    'url'  => '#',
+                ],
+            ],
+        
         ],
         ['header' => 'account_settings'],
+        [
+            'text'        => 'Configuracion',
+            'icon'        => 'fas fa-cogs',
+            'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Usuarios',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Sucursales',
+                    'url'  => '#',
+                ],
+            ],
+        ],
         [
             'text' => 'profile',
             'url'  => 'admin/settings',

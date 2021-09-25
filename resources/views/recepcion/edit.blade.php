@@ -57,7 +57,7 @@
                     <!-- text input -->
                     <div class="form-group">
                         <label>Tecnico Encargado</label>
-                        <input name="tecnicoE" type="text" class="form-control" placeholder="Enter ..." value="{{$recepcion->tecnicos->nombre}}">
+                        <input name="tecnicoE" type="text" class="form-control" placeholder="Enter ...">
                     </div>
                 </div>
                 <div class="col-sm-4">

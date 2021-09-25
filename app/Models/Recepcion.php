@@ -17,6 +17,9 @@ class Recepcion extends Model
     public function Tecnicos(){
         return $this->belongsTo(Tecnico::class,'tecnico_id');
     }
+    public function Accesorio(){
+        return $this->belongsTo(Tecnico::class,'tecnico_id');
+    }
 
 
 }

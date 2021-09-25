@@ -15,23 +15,28 @@ class CreateRecepcionsTable extends Migration
     {
         Schema::create('recepcions', function (Blueprint $table) {
             $table->id();
-            $table->string('marca',45);
-            $table->string('modelo',45);
-            $table->string('serie',45);
+            $table->string('prioridad',45);
+            $table->string('area',45);
+            $table->string('estado',45);
+            $table->string('diagnostico',45);
+            $table->string('garantia',45);
+            $table->string('contraseña',45);
             $table->date('fechadeingreso');
             $table->date('fechadeentrega');
+            $table->float('presupuesto',8,2);
+            $table->float('adelanto',8,2);
             $table->string('observacion',100);
             $table->string('problema',100);
             $table->foreignId('clientes_id')
                   ->nullable()
                   ->constrained('clientes')
                   ->cascadeOnUpdate()
-                  ->nullOnDelete();
+                  ->restrictOnDelete();
             $table->foreignId('equipos_id')
                   ->nullable()
                   ->constrained('equipos')
                   ->cascadeOnUpdate()
-                  ->nullOnDelete();
+                  ->restrictOnDelete();
             $table->timestamps();
         });
     }

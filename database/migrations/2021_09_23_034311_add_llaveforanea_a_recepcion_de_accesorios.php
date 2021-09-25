@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddLlaveforaneaARecepcion extends Migration
+class AddLlaveforaneaARecepcionDeAccesorios extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,9 @@ class AddLlaveforaneaARecepcion extends Migration
     public function up()
     {
         Schema::table('recepcions', function (Blueprint $table)  {
-            $table->foreignId('tecnico_id')
+            $table->foreignId('accesorio_id')
             ->nullable()
-            ->constrained('tecnicos')
+            ->constrained('accesorios')
             ->cascadeOnUpdate()
             ->restrictDelete();
         });
@@ -30,7 +30,7 @@ class AddLlaveforaneaARecepcion extends Migration
     public function down()
     {
         Schema::table('recepcions', function (Blueprint $table)  {
-            $table->dropColumn('tecnico_id');
+            $table->dropColumn('accesorio_id');
         });
     }
 }
