@@ -3,13 +3,14 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
+    <h1>Editar Informacion del Cliente</h1>
 @stop
 
 @section('content')
     <!-- general form elements -->
-    <div class="card card">
+    <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title">Editar Equipo</h3>
+            <h3 class="card-title">Quick Example</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->

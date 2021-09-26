@@ -15,17 +15,17 @@ class CreateRecepcionsTable extends Migration
     {
         Schema::create('recepcions', function (Blueprint $table) {
             $table->id();
-            $table->string('prioridad',45);
+            $table->string('prioridad',45)->nullable();
             $table->string('area',45);
             $table->string('estado',45);
-            $table->string('diagnostico',45);
-            $table->string('garantia',45);
-            $table->string('contraseña',45);
+            $table->string('diagnostico',45)->nullable();
+            $table->string('garantia',45)->nullable();
+            $table->string('contraseña',45)->nullable();
             $table->date('fechadeingreso');
             $table->date('fechadeentrega');
             $table->float('presupuesto',8,2);
-            $table->float('adelanto',8,2);
-            $table->string('observacion',100);
+            $table->float('adelanto',8,2)->nullable();
+            $table->string('observacion',100)->nullable();
             $table->string('problema',100);
             $table->foreignId('clientes_id')
                   ->nullable()

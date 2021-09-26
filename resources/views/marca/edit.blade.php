@@ -9,18 +9,19 @@
     <!-- general form elements -->
     <div class="card card">
         <div class="card-header">
-            <h3 class="card-title">Agregar Equipo</h3>
+            <h3 class="card-title">Editar Marca</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form action="/equipo" method="POST">
+        <form action="/marca/{{$marca->id}}" method="POST">
             @csrf
+            @method('PUT')
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Tipo Equipo</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Introducir Nombre" tabindex="1">
+                            <label for="exampleInputEmail1">Marca</label>
+                            <input type="text" class="form-control" id="nombre" name="marca" placeholder="Introducir Nombre" tabindex="1" value="{{$marca->marca}}">
                         </div>
                     </div>
                 </div>
@@ -28,7 +29,7 @@
             <!-- /.card-body -->
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary float-right btn-sm mr-1" tabindex="5">Guardar</button>
-                <a href="/equipo" class="btn btn-secondary float-right btn-sm mr-1" tabindex="4">Cancelar</a>
+                <a href="/marca" class="btn btn-secondary float-right btn-sm mr-1" tabindex="4">Cancelar</a>
             </div>
         </form>
     </div>
@@ -41,10 +42,5 @@
 @section('js')
     <script>
         console.log('Hi!');
-    </script>
-    <script>
-        $(function() {
-            $('.select2').select2()
-        });
     </script>
 @stop

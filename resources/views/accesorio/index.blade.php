@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Categoria Equipos </h1>
+                    <h1>Accesorios</h1>
                 </div>
             </div>
             <div class="row mb-2">
@@ -15,11 +15,11 @@
                     <ol class="breadcrumb float-sm-left">
                         <li class="breadcrumb-item"><a href="dash">Principal</a></li>
                         <li class="breadcrumb-item active">Configuracion</li>
-                        <li class="breadcrumb-item active">Equipos</li>
+                        <li class="breadcrumb-item active">Accesorios</li>
                     </ol>
                 </div>
                 <div class="col-sm-6">
-                    <a href="equipo/create" class="btn btn-primary float-right btn-sm mr-1" tabindex="4">Nueva Equipo</a>
+                    <a href="accesorio/create" class="btn btn-primary float-right btn-sm mr-1" tabindex="4">Nueva Accesorio</a>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -39,14 +39,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($equipo as $equipo)
+                    @foreach ($accesorios as $accesorio)
                         <tr>
-                            <th>{{ $equipo->id }}</th>
-                            <th>{{ $equipo->descripcion }}</th>
+                            <th>{{ $accesorio->id }}</th>
+                            <th>{{ $accesorio->descrip_ac }}</th>
                             <th>
                                 <a class="btn btn-xs btn-default text-primary  shadow" title="Edit"
-                                    href="/equipo/{{ $equipo->id }}/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>
-                                <form action="{{ route('equipo.destroy', $equipo->id) }}" method="post"
+                                    href="/accesorio/{{ $accesorio->id }}/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>
+                                <form action="{{ route('accesorio.destroy', $accesorio->id) }}" method="post"
                                     style="display: inline-block">
                                     @csrf
                                     @method('DELETE')

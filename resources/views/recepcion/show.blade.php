@@ -3,8 +3,31 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
-@stop
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Detalles Orden Nº{{$recepcion->id}}</h1>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-left">
+                    <li class="breadcrumb-item"><a href="dash">Principal</a></li>
+                    <li class="breadcrumb-item active"><a>Taller</a></li>
+                    <li class="breadcrumb-item active"><a>Orden</a></li>
+                    <li class="breadcrumb-item active"><a>Detalles</a></li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                <a href="/recepcion/create" class="btn btn-primary float-right btn-sm mr-1" tabindex="4">Editar</a>
+                <a href="/recepcion/create" class="btn btn-primary float-right btn-sm mr-1" tabindex="4">Regresar</a>
+                <a href="/recepcion/create" class="btn btn-primary float-right btn-sm mr-1" tabindex="4">Imprimir Orden</a>
+                <a href="/recepcion/create" class="btn btn-primary float-right btn-sm mr-1" tabindex="4">Mover de Area</a>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>@stop
 
 @section('content')
     @csrf

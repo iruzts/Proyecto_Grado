@@ -7,14 +7,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Categoria Equipos </h1>
+                    <h1>Equipos(Historial)</h1>
                 </div>
             </div>
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-left">
                         <li class="breadcrumb-item"><a href="dash">Principal</a></li>
-                        <li class="breadcrumb-item active">Configuracion</li>
+                        <li class="breadcrumb-item active">Taller</li>
                         <li class="breadcrumb-item active">Equipos</li>
                     </ol>
                 </div>
@@ -44,15 +44,12 @@
                             <th>{{ $equipo->id }}</th>
                             <th>{{ $equipo->descripcion }}</th>
                             <th>
-                                <a class="btn btn-xs btn-default text-primary  shadow" title="Edit"
-                                    href="/equipo/{{ $equipo->id }}/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>
+                                <a class="btn btn-info" href="/equipo/{{ $equipo->id }}/edit">Editar</a>
                                 <form action="{{ route('equipo.destroy', $equipo->id) }}" method="post"
                                     style="display: inline-block">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-xs btn-default text-danger shadow" title="Delete"> <i
-                                            class="fa fa-lg fa-fw fa-trash"></i>
-                                    </button>
+                                    <button class="btn btn-danger">Eliminar</button>
                                 </form>
                             </th>
                         </tr>

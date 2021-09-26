@@ -20,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 Route::resource('recepcion', 'App\Http\Controllers\RecepcionController');
 Route::resource('cliente', 'App\Http\Controllers\ClienteController');
 Route::resource('equipo', 'App\Http\Controllers\EquipoController');
+Route::resource('marca', 'App\Http\Controllers\MarcaController');
+Route::resource('accesorio', 'App\Http\Controllers\AccesorioController');
+Route::resource('equipo_cliente', 'App\Http\Controllers\EquipoCController');
+
 
 
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dash', function () {

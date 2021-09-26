@@ -45,7 +45,7 @@
                         <div class="form-group">
                             <label>Cliente</label>
                             <div class="input-group-append">
-                                <select name="Ncliente" class="select2" multiple="multiple" data-placeholder="Seleccione Cliente" style="width: 100%;">
+                                <select name="Ncliente" class="select2" data-placeholder="Seleccione Cliente" style="width: 100%;">
                                     @foreach ($clientes as $cliente)
                                         <option value="{{ $cliente['id'] }}">{{ $cliente['nombre'] }}</option>
                                     @endforeach
@@ -60,7 +60,7 @@
                     <div class="col-sm-6">
                         <label>Equipo</label>
                         <div class="input-group-append">
-                            <select name="NEquipo"  class="select2" multiple="multiple" data-placeholder="Seleccione Equipo" style="width: 100%;">
+                            <select name="NEquipo"  class="select2" data-placeholder="Seleccione Equipo" style="width: 100%;">
                                 @foreach ($equipos as $equipo)
                                     <option value="{{ $equipo['id'] }}">{{ $equipo['descripcion'] }}</option>
                                 @endforeach
