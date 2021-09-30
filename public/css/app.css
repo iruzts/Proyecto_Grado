@@ -763,6 +763,39 @@ select {
 [type='file']:focus {
 	outline: 1px auto -webkit-focus-ring-color;
 }
+.container {
+	width: 100%;
+}
+@media (min-width: 640px) {
+
+	.container {
+		max-width: 640px;
+	}
+}
+@media (min-width: 768px) {
+
+	.container {
+		max-width: 768px;
+	}
+}
+@media (min-width: 1024px) {
+
+	.container {
+		max-width: 1024px;
+	}
+}
+@media (min-width: 1280px) {
+
+	.container {
+		max-width: 1280px;
+	}
+}
+@media (min-width: 1536px) {
+
+	.container {
+		max-width: 1536px;
+	}
+}
 .prose {
 	color: #374151;
 	max-width: 65ch;
@@ -1100,9 +1133,19 @@ select {
 .col-span-6 {
 	grid-column: span 6 / span 6;
 }
+.float-right {
+	float: right;
+}
+.m-0 {
+	margin: 0px;
+}
 .mx-auto {
 	margin-left: auto;
 	margin-right: auto;
+}
+.mx-1 {
+	margin-left: 0.25rem;
+	margin-right: 0.25rem;
 }
 .ml-3 {
 	margin-left: 0.75rem;
@@ -1176,14 +1219,26 @@ select {
 .-mt-px {
 	margin-top: -1px;
 }
+.mr-1 {
+	margin-right: 0.25rem;
+}
+.mb-2 {
+	margin-bottom: 0.5rem;
+}
 .block {
 	display: block;
+}
+.inline-block {
+	display: inline-block;
 }
 .flex {
 	display: flex;
 }
 .inline-flex {
 	display: inline-flex;
+}
+.table {
+	display: table;
 }
 .grid {
 	display: grid;
@@ -1523,6 +1578,9 @@ select {
 .p-6 {
 	padding: 1.5rem;
 }
+.p-0 {
+	padding: 0px;
+}
 .px-4 {
 	padding-left: 1rem;
 	padding-right: 1rem;
@@ -1611,6 +1669,9 @@ select {
 }
 .pt-8 {
 	padding-top: 2rem;
+}
+.pt-0 {
+	padding-top: 0px;
 }
 .text-left {
 	text-align: left;

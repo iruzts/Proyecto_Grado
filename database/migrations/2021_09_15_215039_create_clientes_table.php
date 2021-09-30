@@ -17,6 +17,7 @@ class CreateClientesTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->id();
+            $table->biginteger('dni');
             $table->string('nombre',50);
             $table->string('direccion',100);
             $table->integer('telefono');

@@ -3,27 +3,28 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h3><i class="fas fa-users"></i>
-                        Listas de Clientes</h3>
-                </div>
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h3><i class="fas fa-users"></i>
+                    Listas de Clientes</h3>
             </div>
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-left">
-                        <li class="breadcrumb-item"><a href="dash">Principal</a></li>
-                        <li class="breadcrumb-item active">Clientes</li>
-                    </ol>
-                </div>
-                <div class="col-sm-6">
-                    <a href="/cliente/create" class="btn btn-primary float-right btn-sm mr-1" tabindex="4">Nuevo Cliente</a>
-                </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-left">
+                    <li class="breadcrumb-item"><a href="dash">Principal</a></li>
+                    <li class="breadcrumb-item active">Clientes</li>
+                </ol>
             </div>
-        </div><!-- /.container-fluid -->
-    </section>
+            <div class="col-sm-6">
+                <button type="button" class="btn btn-primary float-right btn-sm mr-1" data-toggle="modal"
+                    data-target="#modalcrearclientes">
+                    Nuevo Cliente
+                </button>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
 @stop
 
 @section('content')
@@ -33,6 +34,7 @@
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
+                        <th scope="col">Identidad</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Direccion</th>
                         <th scope="col">Tel/Cel</th>
@@ -42,14 +44,17 @@
                 <tbody>
                     @foreach ($clientes as $cliente)
                         <tr>
-                            <th>{{ $cliente->id_cliente }}</th>
+                            <th>{{ $cliente->id}}</th>
+                            <th>{{ $cliente->dni }}</th>
                             <th>{{ $cliente->nombre }}</th>
                             <th>{{ $cliente->direccion }}</th>
                             <th>{{ $cliente->telefono }}</th>
                             <th>
-                                <a class="btn btn-xs btn-default text-primary mx-1"
-                                    href="/cliente/{{ $cliente->id }}/edit"> <i class="fa fa-lg fa-fw fa-pen"></i>
-                                </a>
+                                <button class="btn btn-xs btn-default text-primary mx-1"
+                                    href="" data-toggle="modal"
+                                    data-target="#modaleditarclientes{{$cliente->id}}"> <i class="fa fa-lg fa-fw fa-pen"></i>
+                                </button>
+                                @include('cliente.modal.edit')
                                 <form action="{{ route('cliente.destroy', $cliente->id) }}" method="post"
                                     style="display: inline-block">
                                     @csrf
@@ -70,6 +75,8 @@
         </div>
     </div>
 @stop
+@include('cliente.modal.create')
+
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
