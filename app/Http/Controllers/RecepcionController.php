@@ -8,6 +8,8 @@ use App\Models\Equipo;
 use App\Models\Recepcion;
 use App\Models\Tecnico;
 use App\Models\Accesorio;
+use App\Models\Marca;
+use App\Models\MarcaDetalle;
 
 
 use Illuminate\Http\Request;
@@ -32,11 +34,14 @@ class RecepcionController extends Controller
      */
     public function create()
     {
+        $equipos= Equipo::all();
         $clientes= Cliente::all();
         $equipos= Equipo::all();
         $tecnicos =Tecnico::all();
         $accesorios= Accesorio::all();
-        return view('recepcion.create',compact('clientes','equipos','tecnicos','accesorios'));
+        $marcas= Marca::all();
+        $marcadetalles= MarcaDetalle::all();
+        return view('recepcion.create',compact('clientes','equipos','tecnicos','accesorios','marcas','marcadetalles'));
     }
 
     /**
@@ -47,27 +52,45 @@ class RecepcionController extends Controller
      */
     public function store(Request $request)
     {
-        $fechaI = Carbon::now();
-        $recepcions = new Recepcion();
+        if (isset($_POST["submit1"])) {
+            $clientes = new Cliente();
+            $clientes->dni =$request->get('dni');
+            $clientes->nombre =$request->get('nombre');
+            $clientes->direccion =$request->get('direccion');
+            $clientes->telefono =$request->get('telefono');
+            $clientes->save();
+            return redirect('/recepcion/create');
 
-        $recepcions->clientes_id=$request->get('Ncliente');
-        $recepcions->equipos_id=$request->get('NEquipo');
-        $recepcions->prioridad=$request->get('prioridad');
-        $recepcions->area=$request->get('area');
-        $recepcions->estado=$request->get('estado');
-        $recepcions->diagnostico=$request->get('diagnostico');
-        $recepcions->garantia=$request->get('garantia');
-        $recepcions->contraseña=$request->get('contrasena');
-        $recepcions->fechadeingreso=$fechaI;
-        $recepcions->fechadeentrega=$request->get('fechaE');
-        $recepcions->presupuesto=$request->get('presupuesto');
-        $recepcions->adelanto=$request->get('adelanto');
-        $recepcions->observacion=$request->get('observacion');
-        $recepcions->problema=$request->get('problema');
-
-        $recepcions->save();
-
-        return redirect('/recepcion');
+        }if(isset($_POST["submit2"])){  
+            
+            $equipos = new MarcaDetalle();
+            $equipos->equipo_id=$request->get('tipoequipo');
+            $equipos->marca_id=$request->get('marca');
+            $equipos->modelo=$request->get('modelo');
+            $equipos->tipo_serie=$request->get('tipo');
+            $equipos->serie=$request->get('serie');
+            $equipos->save();
+            return redirect('/recepcion/create');
+        }else{
+            $fechaI = Carbon::now();
+            $recepcions = new Recepcion();
+            $recepcions->clientes_id=$request->get('Ncliente');
+            $recepcions->equipos_id=$request->get('NEquipo');
+            $recepcions->prioridad=$request->get('prioridad');
+            $recepcions->area=$request->get('area');
+            $recepcions->estado=$request->get('estado');
+            $recepcions->diagnostico=$request->get('diagnostico');
+            $recepcions->garantia=$request->get('garantia');
+            $recepcions->contraseña=$request->get('contrasena');
+            $recepcions->fechadeingreso=$fechaI;
+            $recepcions->fechadeentrega=$request->get('fechaE');
+            $recepcions->presupuesto=$request->get('presupuesto');
+            $recepcions->adelanto=$request->get('adelanto');
+            $recepcions->observacion=$request->get('observacion');
+            $recepcions->problema=$request->get('problema');
+            $recepcions->save();
+            return redirect('/recepcion');
+        }
     }
 
     /**

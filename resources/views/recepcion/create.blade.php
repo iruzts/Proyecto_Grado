@@ -1,9 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
-
 @section('content_header')
-<section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
@@ -22,7 +19,6 @@
             </div>
         </div>
     </div><!-- /.container-fluid -->
-</section>
 @stop
 
 @section('content')
@@ -45,14 +41,17 @@
                         <div class="form-group">
                             <label>Cliente</label>
                             <div class="input-group-append">
-                                <select name="Ncliente" class="select2" data-placeholder="Seleccione Cliente" style="width: 100%;">
+                                <select name="Ncliente" class="select2" data-placeholder="Seleccione Cliente"
+                                    style="width: 100%;">
+                                    <option value="">Seleccione Cliente</option>
                                     @foreach ($clientes as $cliente)
                                         <option value="{{ $cliente['id'] }}">{{ $cliente['nombre'] }}</option>
                                     @endforeach
                                 </select>
                                 <span class="input-group-append">
-                                    <a href="cliente/create" type="button" class="btn btn-primary btn-flat"><i
-                                            class="fas fa-plus"></a></i>
+                                    <button href="" type="button" class="btn btn-primary btn-flat" data-toggle="modal"
+                                        data-target="#modalcrearcli"><i class="fas fa-plus"></button></i>
+                                    @include('recepcion.modal.crearc')
                                 </span>
                             </div>
                         </div>
@@ -60,14 +59,19 @@
                     <div class="col-sm-6">
                         <label>Equipo</label>
                         <div class="input-group-append">
-                            <select name="NEquipo"  class="select2" data-placeholder="Seleccione Equipo" style="width: 100%;">
-                                @foreach ($equipos as $equipo)
-                                    <option value="{{ $equipo['id'] }}">{{ $equipo['descripcion'] }}</option>
+                            <select name="NEquipo" class="select2" data-placeholder="Seleccione Equipo"
+                                style="width: 100%;">
+                                <option value="">Seleccione Equipo</option>
+                                @foreach ($marcadetalles as $marcadetalle)
+                                    <option value="{{ $marcadetalle['id'] }}">
+                                        {{ $marcadetalle->equipo['descripcion'] . '/' . $marcadetalle->marca['marca'] . '/' . $marcadetalle['modelo'] . '/' . $marcadetalle['serie'] }}
+                                    </option>
                                 @endforeach
                             </select>
                             <span class="input-group-append">
-                                <a href="cliente/create" type="button" class="btn btn-primary btn-flat"><i
-                                        class="fas fa-plus"></a></i>
+                                <button href="" type="button" class="btn btn-primary btn-flat"><i class="fas fa-plus"
+                                        data-toggle="modal" data-target="#modalcrearequipo"></button></i>
+                                @include('recepcion.modal.crearequipo')
                             </span>
                         </div>
                     </div>
