@@ -52,36 +52,41 @@
                         <div class="tab-content" id="custom-tabs-four-tabContent">
                             <div class="tab-pane fade show active" id="entrada" role="tabpanel"
                                 aria-labelledby="custom-tabs-four-home-tab">
-                                <table id="recepcion1" class="table table-striped table-bordered" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Nº Tiket</th>
-                                            <th scope="col">Prioridad</th>
-                                            <th scope="col">Estado</th>
-                                            <th scope="col">Modelo</th>
-                                            <th scope="col">Cliente</th>
-                                            <th scope="col">Responsable</th>
-                                            <th scope="col">Precio</th>
-                                            <th scope="col">Accion</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($recepcions as $recepcion)
-                                            @if ($recepcion->area == 'Entrada')
+                                <div class="table-responsive">
+                                    <table id="recepcion1" class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Cliente</th>
+                                                <th scope="col">Telefono</th>
+                                                <th scope="col">Tipo</th>
+                                                <th scope="col">Marca</th>
+                                                <th scope="col">Color</th>
+                                                <th scope="col">Modelo</th>
+                                                <th scope="col">Estado</th>
+                                                <th scope="col">Fecha Ingreso</th>
+                                                <th scope="col">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($equipos as $equipo)
                                                 <tr>
-                                                    <th>{{ $recepcion->id }}</th>
-                                                    <th>{{ $recepcion->prioridad }}</th>
-                                                    <th>{{ $recepcion->estado }}</th>
-                                                    <th>{{ $recepcion->modelo }}</th>
-                                                    <th>{{ $recepcion->Clientes->nombre }}</th>
-                                                    <th>responsable</th>
-                                                    <th>{{ $recepcion->presupuesto }}</th>
-                                                    <th>
-                                                        <a href="/recepcion/{{$recepcion->id}}" class="btn btn-xs btn-default text-teal mx-1 shadow"
+                                                    <th scope="row">{{ $equipo->id }}</th>
+                                                    <td>{{ $equipo->clientes->nombre }}</td>
+                                                    <td>{{ $equipo->clientes->telefono }}</td>
+                                                    <td>{{ $equipo->tipoequipos->nombre }}</td>
+                                                    <td>{{ $equipo->marcas->nombre }}</td>
+                                                    <td>{{ $equipo->colors->nombre }}</td>
+                                                    <td>{{ $equipo->modelo }}</td>
+                                                    <td>Estado</td>
+                                                    <td>Fecha</td>
+                                                    <td>
+                                                        <a href="/recepcion/{{ $equipo->id }}"
+                                                            class="btn btn-xs btn-default text-teal mx-1 shadow"
                                                             title="Details">
                                                             <i class="fa fa-lg fa-fw fa-eye"></i>
                                                         </a>
-                                                        <a href="/recepcion/{{$recepcion->id}}/edit" class="btn btn-xs btn-default text-primary mx-1 shadow"
+                                                        <a href="#" class="btn btn-xs btn-default text-primary mx-1 shadow"
                                                             title="Edit">
                                                             <i class="fa fa-lg fa-fw fa-pen"></i>
                                                         </a>
@@ -89,9 +94,64 @@
                                                             title="Delete">
                                                             <i class="fa fa-lg fa-fw fa-trash"></i>
                                                         </a>
-                                                    </th>
+                                                    </td>
                                                 </tr>
-                                            @endif
+                                            @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="reparacion" role="tabpanel"
+                                aria-labelledby="custom-tabs-four-profile-tab">
+                                <table id="recepcion2" class="table table-striped table-bordered" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Cliente</th>
+                                            <th scope="col">Telefono</th>
+                                            <th scope="col">Tipo</th>
+                                            <th scope="col">Marca</th>
+                                            <th scope="col">Color</th>
+                                            <th scope="col">Modelo</th>
+                                            <th scope="col">Estado</th>
+                                            <th scope="col">Fecha Ingreso</th>
+                                            <th scope="col">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($equipos as $equipo)
+                                            <tr>
+                                                <th scope="row">{{ $equipo->id }}</th>
+                                                <td>{{ $equipo->clientes->nombre }}</td>
+                                                <td>{{ $equipo->clientes->telefono }}</td>
+                                                <td>{{ $equipo->tipoequipos->nombre }}</td>
+                                                <td>{{ $equipo->marcas->nombre }}</td>
+                                                <td>{{ $equipo->colors->nombre }}</td>
+                                                <td>{{ $equipo->modelo }}</td>
+                                                <td>Estado</td>
+                                                <td>Fecha</td>
+                                                <td>
+                                                    <a href="/recepcion/{{ $equipo->id }}"
+                                                        class="btn btn-xs btn-default text-teal mx-1 shadow"
+                                                        title="Details">
+                                                        <i class="fa fa-lg fa-fw fa-eye"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-xs btn-default text-primary mx-1 shadow"
+                                                        title="Edit">
+                                                        <i class="fa fa-lg fa-fw fa-pen"></i>
+                                                    </a>
+                                                    <a class="btn btn-xs btn-default text-danger mx-1 shadow"
+                                                        title="Delete">
+                                                        <i class="fa fa-lg fa-fw fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                     <tfoot>
@@ -101,99 +161,56 @@
                                     </tfoot>
                                 </table>
                             </div>
-                            <div class="tab-pane fade" id="reparacion" role="tabpanel"
-                                aria-labelledby="custom-tabs-four-profile-tab">
-                                <table id="recepcion2" class="table table-striped table-bordered" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Nº Tiket</th>
-                                            <th scope="col">Prioridad</th>
-                                            <th scope="col">Estado</th>
-                                            <th scope="col">Modelo</th>
-                                            <th scope="col">Cliente</th>
-                                            <th scope="col">Responsable</th>
-                                            <th scope="col">Precio</th>
-                                            <th scope="col">Accion</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($recepcions as $recepcion)
-                                            @if ($recepcion->area == 'Reparacion')
-                                                <tr>
-                                                    <th>{{ $recepcion->id }}</th>
-                                                    <th>{{ $recepcion->prioridad }}</th>
-                                                    <th>{{ $recepcion->estado }}</th>
-                                                    <th>{{ $recepcion->modelo }}</th>
-                                                    <th>{{ $recepcion->Clientes->nombre }}</th>
-                                                    <th>responsable</th>
-                                                    <th>{{ $recepcion->presupuesto }}</th>
-                                                    <th>
-                                                        <a class="btn btn-xs btn-default text-primary mx-1 shadow"
-                                                            title="Edit">
-                                                            <i class="fa fa-lg fa-fw fa-pen"></i>
-                                                        </a>
-                                                        <a class="btn btn-xs btn-default text-danger mx-1 shadow"
-                                                            title="Delete">
-                                                            <i class="fa fa-lg fa-fw fa-trash"></i>
-                                                        </a>
-                                                        <a class="btn btn-xs btn-default text-teal mx-1 shadow"
-                                                            title="Details">
-                                                            <i class="fa fa-lg fa-fw fa-eye"></i>
-                                                        </a>
-                                                    </th>
-                                                </tr>
-                                            @endif
-                                        @endforeach
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
                             <div class="tab-pane fade" id="salida" role="tabpanel"
                                 aria-labelledby="custom-tabs-four-messages-tab">
                                 <table id="recepcion3" class="table table-striped table-bordered" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Nº Tiket</th>
-                                            <th scope="col">Prioridad</th>
-                                            <th scope="col">Estado</th>
-                                            <th scope="col">Modelo</th>
+                                            <th scope="col">#</th>
                                             <th scope="col">Cliente</th>
-                                            <th scope="col">Responsable</th>
-                                            <th scope="col">Precio</th>
-                                            <th scope="col">Accion</th>
+                                            <th scope="col">Telefono</th>
+                                            <th scope="col">Tipo</th>
+                                            <th scope="col">Marca</th>
+                                            <th scope="col">Color</th>
+                                            <th scope="col">Modelo</th>
+                                            <th scope="col">Estado</th>
+                                            <th scope="col">Fecha Ingreso</th>
+                                            <th scope="col">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($recepcions as $recepcion)
-                                            @if ($recepcion->area == 'Salida')
-                                                <tr>
-                                                    <th>{{ $recepcion->id }}</th>
-                                                    <th>{{ $recepcion->prioridad }}</th>
-                                                    <th>{{ $recepcion->estado }}</th>
-                                                    <th>{{ $recepcion->modelo }}</th>
-                                                    <th>{{ $recepcion->Clientes->nombre }}</th>
-                                                    <th>responsable</th>
-                                                    <th>{{ $recepcion->presupuesto }}</th>
-                                                    <th>
-                                                        <a class="btn btn-xs btn-default text-primary  shadow" title="Edit">
-                                                            <i class="fa fa-lg fa-fw fa-pen"></i>
-                                                        </a>
-                                                        <a class="btn btn-xs btn-default text-teal shadow" title="Details">
-                                                            <i class="fa fa-lg fa-fw fa-eye"></i>
-                                                        </a>
-                                                        <a class="btn btn-xs btn-default text-danger shadow" title="Delete">
-                                                            <i class="fa fa-lg fa-fw fa-trash"></i>
-                                                        </a>
-                                                    </th>
-                                                </tr>
-                                            @endif
+                                        @foreach ($equipos as $equipo)
+                                            <tr>
+                                                <th scope="row">{{ $equipo->id }}</th>
+                                                <td>{{ $equipo->clientes->nombre }}</td>
+                                                <td>{{ $equipo->clientes->telefono }}</td>
+                                                <td>{{ $equipo->tipoequipos->nombre }}</td>
+                                                <td>{{ $equipo->marcas->nombre }}</td>
+                                                <td>{{ $equipo->colors->nombre }}</td>
+                                                <td>{{ $equipo->modelo }}</td>
+                                                <td>Estado</td>
+                                                <td>Fecha</td>
+                                                <td>
+                                                    <a href="/recepcion/{{ $equipo->id }}"
+                                                        class="btn btn-xs btn-default text-teal mx-1 shadow"
+                                                        title="Details">
+                                                        <i class="fa fa-lg fa-fw fa-eye"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-xs btn-default text-primary mx-1 shadow"
+                                                        title="Edit">
+                                                        <i class="fa fa-lg fa-fw fa-pen"></i>
+                                                    </a>
+                                                    <a class="btn btn-xs btn-default text-danger mx-1 shadow"
+                                                        title="Delete">
+                                                        <i class="fa fa-lg fa-fw fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr>
+
                                         </tr>
                                     </tfoot>
                                 </table>

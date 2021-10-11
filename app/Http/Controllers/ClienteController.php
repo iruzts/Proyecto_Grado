@@ -36,15 +36,22 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $clientes = new Cliente();
-        $clientes->dni =$request->get('dni');
-        $clientes->nombre =$request->get('nombre');
-        $clientes->direccion =$request->get('direccion');
-        $clientes->telefono =$request->get('telefono');
+        try{
+            $clientes = new Cliente();
+            $clientes->dni =$request->get('dni');
+            $clientes->nombre =$request->get('nombre');
+            $clientes->direccion =$request->get('direccion');
+            $clientes->telefono =$request->get('telefono');
+    
+            $clientes->save();
+            return redirect('/cliente')->with('success','Cliente Creado Correctamente'); 
 
-        $clientes->save();
+        } catch (Throwable $clientes){
+            return redirect('/cliente')->with('success','El Numero de Identidad ya Existe'); 
 
-        return redirect('/cliente'); 
+        }
+
+        
     }
 
     /**

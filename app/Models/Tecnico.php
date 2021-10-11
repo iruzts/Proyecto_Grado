@@ -9,7 +9,7 @@ class Tecnico extends Model
 {
     use HasFactory;
     
-    public function Recepcions(){
-        return $this->hasMany(Recepcion::class,'id');
+    public function DetalleReparacions(){
+        return $this->hasMany(DetalleReparacion::class,'id');
     }
 }

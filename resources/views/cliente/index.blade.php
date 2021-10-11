@@ -28,42 +28,48 @@
 @stop
 
 @section('content')
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+        </div>
+    @endif
     <div class="card">
         <div class="card-body">
-            <table id="table2" class="table table-bordered table-striped" style="width:100%">
+            <table id="table2" class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Identidad</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Direccion</th>
-                        <th scope="col">Tel/Cel</th>
-                        <th scope="col">Acciones</th>
+                        <th>ID</th>
+                        <th>Identidad</th>
+                        <th>Nombre</th>
+                        <th>Direccion</th>
+                        <th>Tel/Cel</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($clientes as $cliente)
                         <tr>
-                            <th>{{ $cliente->id}}</th>
-                            <th>{{ $cliente->dni }}</th>
-                            <th>{{ $cliente->nombre }}</th>
-                            <th>{{ $cliente->direccion }}</th>
-                            <th>{{ $cliente->telefono }}</th>
-                            <th>
-                                <button class="btn btn-xs btn-default text-primary mx-1"
-                                    href="" data-toggle="modal"
-                                    data-target="#modaleditarclientes{{$cliente->id}}"> <i class="fa fa-lg fa-fw fa-pen"></i>
+                            <th>{{ $cliente->id }}</th>
+                            <td>{{ $cliente->dni }}</td>
+                            <td>{{ $cliente->nombre }}</td>
+                            <td>{{ $cliente->direccion }}</td>
+                            <td>{{ $cliente->telefono }}</td>
+                            <td>
+                                <button class="btn btn-default text-primary mx-1" href="" data-toggle="modal"
+                                    data-target="#modaleditarclientes{{ $cliente->id }}"> <i
+                                        class="fa fa-lg fa-fw fa-pen"></i>
                                 </button>
                                 @include('cliente.modal.edit')
                                 <form action="{{ route('cliente.destroy', $cliente->id) }}" method="post"
                                     style="display: inline-block">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-xs btn-default text-danger mx-1"> <i
+                                    <button class="btn btn-default text-danger mx-1"> <i
                                             class="fa fa-lg fa-fw fa-trash"></i>
                                     </button>
                                 </form>
-                            </th>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

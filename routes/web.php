@@ -20,9 +20,9 @@ use Illuminate\Support\Facades\Route;
 //    return view('dash.index');
 //})->name('dash');
 Route::middleware(['auth:sanctum', 'verified'])->group(function (){
+    Route::resource('recepcion', 'App\Http\Controllers\EquipoController');
     Route::resource('cliente', 'App\Http\Controllers\ClienteController');
-    Route::resource('recepcion', 'App\Http\Controllers\RecepcionController');
-    Route::resource('equipo', 'App\Http\Controllers\EquipoController');
+    //Route::resource('equipo', 'App\Http\Controllers\EquipoController');
     Route::get('/dashboard', function(){
         return view('dashboard');
     })->name('dashboard');

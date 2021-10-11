@@ -11,5 +11,7 @@ class Marca extends Model
     public function MarcaDetalle(){
         return $this->hasMany(Recepcion::class,'id');
     }
-    
+    public function Equipos(){
+        return $this->hasMany(Equipo::class,'id');
+    }
 }

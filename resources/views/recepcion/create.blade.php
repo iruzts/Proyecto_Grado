@@ -24,7 +24,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Nueva Orden de Trabajo</h3>
+            <h3 class="card-title">Detalles del Equipo</h3>
             <div class="card-tools">
                 <!-- Buttons, labels, and many other things can be placed here! -->
                 <!-- Here is a label for example -->
@@ -33,17 +33,17 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <form action="/recepcion" method="POST">
+            <form action="/recepcion" method="POST" class="needs-validation" novalidate>
                 @csrf
                 <div class="row">
                     <div class="col-sm-6">
                         <!-- text input -->
                         <div class="form-group">
-                            <label>Cliente</label>
+                            <label for="inputcliente">Cliente</label>
                             <div class="input-group-append">
-                                <select name="Ncliente" class="select2" data-placeholder="Seleccione Cliente"
-                                    style="width: 100%;">
-                                    <option value="">Seleccione Cliente</option>
+                                <select id="inputcliente" name="Ncliente" class="select2"
+                                    data-placeholder="Seleccione Cliente" style="width: 100%;" required>
+                                    <option selected disabled value="">Seleccione Cliente</option>
                                     @foreach ($clientes as $cliente)
                                         <option value="{{ $cliente['id'] }}">{{ $cliente['nombre'] }}</option>
                                     @endforeach
@@ -51,123 +51,98 @@
                                 <span class="input-group-append">
                                     <button href="" type="button" class="btn btn-primary btn-flat" data-toggle="modal"
                                         data-target="#modalcrearcli"><i class="fas fa-plus"></button></i>
-                                    @include('recepcion.modal.crearc')
                                 </span>
+                                <div class="invalid-tooltip">
+                                    Por favor selecciona cliente.
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <label>Equipo</label>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="inputequipo">Tipo de Equipo</label>
                         <div class="input-group-append">
-                            <select name="NEquipo" class="select2" data-placeholder="Seleccione Equipo"
-                                style="width: 100%;">
-                                <option value="">Seleccione Equipo</option>
-                                @foreach ($marcadetalles as $marcadetalle)
-                                    <option value="{{ $marcadetalle['id'] }}">
-                                        {{ $marcadetalle->equipo['descripcion'] . '/' . $marcadetalle->marca['marca'] . '/' . $marcadetalle['modelo'] . '/' . $marcadetalle['serie'] }}
+                            <select id="inputequipo" name="TipoEquipo" class="select2"
+                                data-placeholder="Seleccione Equipo" style="width: 100%;" required>
+                                <option selected disabled value="">Seleccione Equipo</option>
+                                @foreach ($tipoequipos as $tipoequipo)
+                                    <option value="{{ $tipoequipo['id'] }}">
+                                        {{ $tipoequipo['nombre'] }}
                                     </option>
                                 @endforeach
                             </select>
-                            <span class="input-group-append">
-                                <button href="" type="button" class="btn btn-primary btn-flat"><i class="fas fa-plus"
-                                        data-toggle="modal" data-target="#modalcrearequipo"></button></i>
-                                @include('recepcion.modal.crearequipo')
-                            </span>
+                            <div class="invalid-tooltip">
+                                Por favor selecciona Equipo.
+                            </div>
                         </div>
                     </div>
+                    <div class="col-sm-4">
+                        <!-- text input -->
+                        <div class="form-group">
+                            <label for="inputmarca">Marca</label>
+                            <div class="input-group-append">
+                                <select id="inputmarca" name="Marca" class="select2"
+                                    data-placeholder="Seleccione Equipo" style="width: 100%;" required>
+                                    <option selected disabled value="">Seleccione Marca</option>
+                                    @foreach ($marcas as $marca)
+                                        <option value="{{ $marca['id'] }}">
+                                            {{ $marca['nombre'] }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="invalid-tooltip">
+                                    Por favor selecciona Marca.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- text input -->
+                        <div class="form-group">
+                            <label for="inputcolor">Color</label>
+                            <div class="input-group-append">
+                                <select id="inputcolor" name="Color" class="select2"
+                                    data-placeholder="Seleccione Equipo" style="width: 100%;" required>
+                                    <option selected disabled value="">Seleccione Color</option>
+                                    @foreach ($colores as $color)
+                                        <option value="{{ $color['id'] }}">
+                                            {{ $color['nombre'] }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="invalid-tooltip">
+                                    Por favor selecciona Color.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <!-- text input -->
                         <div class="form-group">
-                            <label>Prioridad</label>
-                            <select name="prioridad" class="form-control" style="width: 100%;">
-                                <option>Alta</option>
-                                <option>Normal</option>
-                            </select>
+                            <label>Modelo</label>
+                            <input name="Modelo" class="form-control" style="width: 100%;"
+                                placeholder="Ingrese el modelo del equipo">
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <!-- text input -->
                         <div class="form-group">
-                            <label>Area</label>
-                            <select name="area" class="form-control" style="width: 100%;">
-                                <option>Entrada</option>
-                                <option>Salida</option>
-                                <option>Reparacion</option>
-                            </select>
+                            <label>Serie</label>
+                            <input name="Serie" class="form-control" style="width: 100%;"
+                                placeholder="Ingrese el serie del equipo">
                         </div>
                     </div>
-                    <div class="col-sm-3">
-                        <!-- text input -->
-                        <div class="form-group">
-                            <label>Estado</label>
-                            <select name="estado" class="form-control" style="width: 100%;">
-                                <option>Chequeo</option>
-                                <option>Sin Estado</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-2">
-                        <!-- text input -->
-                        <div class="form-group">
-                            <label>Diagnostico</label>
-                            <select name="diagnostico" class="form-control" style="width: 100%;">
-                                <option>Si</option>
-                                <option>No</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <!-- text input -->
-                        <div class="form-group">
-                            <label>Garantia</label>
-                            <select name="garantia" class="form-control" style="width: 100%;">
-                                <option>SI</option>
-                                <option>No</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-4">
                         <!-- text input -->
                         <div class="form-group">
                             <label>Contraseña</label>
-                            <input name="contrasena" class="form-control" style="width: 100%;">
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <!-- text input -->
-                        <div class="form-group">
-                            <label>Fecha Prometida</label>
-                            <input name="fechaE" type="date" class="form-control" placeholder="Enter ...">
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <!-- text input -->
-                        <label>Presupuesto</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">L</span>
-                            </div>
-                            <input name="presupuesto" type="text" class="form-control" placeholder="Importe">
-                            <div class="input-group-append">
-                                <span class="input-group-text">.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <!-- text input -->
-                        <label>Adelanto</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">L</span>
-                            </div>
-                            <input name="adelanto" type="text" class="form-control" placeholder="Importe">
-                            <div class="input-group-append">
-                                <span class="input-group-text">.00</span>
-                            </div>
+                            <input name="password" class="form-control" style="width: 100%;"
+                                placeholder="Si el equipo esta protegido ingrese contraseña">
                         </div>
                     </div>
                 </div>
@@ -175,36 +150,28 @@
                     <div class="col-sm-6">
                         <!-- textarea -->
                         <div class="form-group">
-                            <label>Desperfecto</label>
-                            <textarea name="problema" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                            <label for="inputproblema">Problemas Presentados</label>
+                            <textarea id="inputproblema" name="problema" class="form-control" rows="3"
+                                placeholder="Detalles de problemas presentados" required></textarea>
+                            <div class="invalid-tooltip">
+                                Por favor detallar problema.
+                            </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <!-- textarea -->
-                        <div class="form-group">
-                            <label>Descripcion</label>
-                            <textarea name="observacion" class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
                         <div class="form-group">
                             <label>Accesorios</label>
-                            <select name="accesorio" class="select2" multiple="multiple"
-                                data-placeholder="seleccionar accesorios" style="width: 100%;">
-                                @foreach ($accesorios as $accesorio)
-                                    <option value="{{ $accesorio['id'] }}">{{ $accesorio['descrip_ac'] }}</option>
-                                @endforeach
-                            </select>
+                            <textarea name="Accesorios" class="form-control" rows="3"
+                                placeholder="accesorios dejados con el equipo"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-sm-12">
-                            <button type="submit" class="btn btn-primary float-right btn-sm mr-1"
-                                tabindex="5">Guardar</button>
+                            <button type="submit3" name="submit3" class="btn btn-primary float-right btn-sm mr-1"
+                                tabindex="5" id="btnOpenSaltB">Guardar</button>
                             <a href="/recepcion" class="btn btn-secondary float-right btn-sm mr-1" tabindex="4">Cancelar</a>
                         </div>
                     </div>
@@ -212,9 +179,18 @@
                 <!-- /.card-footer -->
             </form>
         </div>
-
     </div>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 @stop
+@include('recepcion.modal.crearc')
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
@@ -229,5 +205,25 @@
         $(function() {
             $('.select2').select2()
         });
+    </script>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
     </script>
 @stop

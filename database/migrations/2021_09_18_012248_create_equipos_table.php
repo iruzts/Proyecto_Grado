@@ -15,7 +15,11 @@ class CreateEquiposTable extends Migration
     {
         Schema::create('equipos', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion',50);
+            $table->string('modelo',50)->default('Sin Modelo');
+            $table->string('serie',50)->default('Sin Serie');
+            $table->string('claveequipo',50)->default('Sin Contraseña');
+            $table->string('problema',50);
+            $table->string('accesorios',50)->default('Sin Accesorios');
             $table->timestamps();
         });
     }

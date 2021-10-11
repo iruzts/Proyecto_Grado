@@ -9,7 +9,10 @@ class Cliente extends Model
 {
     use HasFactory;
     
-    public function Recepcions(){
-        return $this->hasMany(Recepcion::class,'id');
+    public function Reparacions(){
+        return $this->hasMany(Reparacion::class,'id');
+    }
+    public function Equipos(){
+        return $this->hasMany(Equipo::class,'id');
     }
 }

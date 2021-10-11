@@ -71,11 +71,10 @@ class RecepcionController extends Controller
             $equipos->serie=$request->get('serie');
             $equipos->save();
             return redirect('/recepcion/create');
-        }else{
+            
+        }if(isset($_POST["submit3"])){
             $fechaI = Carbon::now();
             $recepcions = new Recepcion();
-            $recepcions->clientes_id=$request->get('Ncliente');
-            $recepcions->equipos_id=$request->get('NEquipo');
             $recepcions->prioridad=$request->get('prioridad');
             $recepcions->area=$request->get('area');
             $recepcions->estado=$request->get('estado');
@@ -88,6 +87,8 @@ class RecepcionController extends Controller
             $recepcions->adelanto=$request->get('adelanto');
             $recepcions->observacion=$request->get('observacion');
             $recepcions->problema=$request->get('problema');
+            $recepcions->clientes_id=$request->get('Ncliente');
+            $recepcions->marcadetalles_id=$request->get('NEquipo');
             $recepcions->save();
             return redirect('/recepcion');
         }

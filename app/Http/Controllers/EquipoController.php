@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\TipoEquipo;
+use App\Models\Cliente;
+use App\Models\Color;
+use App\Models\Marca;
 use App\Models\Equipo;
+use App\Models\Reparacion;
+use Carbon\Carbon;
 
 
 class EquipoController extends Controller
@@ -15,8 +21,8 @@ class EquipoController extends Controller
      */
     public function index()
     {
-        $equipos=Equipo::all();
-        return view('equipo.index')->with('equipo',$equipos);
+       $equipos=Equipo::all();
+       return view('recepcion.index')->with('equipos',$equipos);;
     }
 
     /**
@@ -26,7 +32,11 @@ class EquipoController extends Controller
      */
     public function create()
     {
-        return view('equipo.create');
+        $clientes = Cliente::all();
+        $tipoequipos = TipoEquipo::all();
+        $colores = Color::all();
+        $marcas = Marca::all();
+        return view('recepcion.create',compact('clientes','tipoequipos','colores','marcas'));
     }
 
     /**
@@ -37,11 +47,41 @@ class EquipoController extends Controller
      */
     public function store(Request $request)
     {
-        $equipos = new Equipo();
-        $equipos->descripcion =$request->get('nombre');
-        $equipos->save();
+        if (isset($_POST["submit1"])) {
+            $clientes = new Cliente();
+            $clientes->dni =$request->get('dni');
+            $clientes->nombre =$request->get('nombre');
+            $clientes->direccion =$request->get('direccion');
+            $clientes->telefono =$request->get('telefono');
+            $clientes->save();
+            return redirect('/recepcion/create');
+    }else{
+        //$fechaI = Carbon::now();
+        $Equipo = new Equipo();
+        $Equipo->cliente_id=$request->get('Ncliente');
+        $Equipo->tipoequipo_id=$request->get('TipoEquipo');
+        $Equipo->marca_id=$request->get('Marca');
+        $Equipo->color_id=$request->get('Color');
+        if (empty($_POST['Modelo'])) {$Equipo->modelo='Sin Modelo';}
+        else{$Equipo->modelo=$request->get('Modelo');}
+        
+        if (empty($_POST['Serie'])) {$Equipo->modelo='Sin Serie';}
+        else{ $Equipo->serie=$request->get('Serie');}
+        
+        if (empty($_POST['password'])) {$Equipo->modelo='Sin Contraseña'; }
+        else{ $Equipo->claveequipo=$request->get('password');}
+        
+        if (empty($_POST['Accesorios'])) { $Equipo->modelo='Sin Accesorios'; }
+        else{$Equipo->accesorios=$request->get('Accesorios');}
 
-        return redirect('/equipo'); 
+        $Equipo->problema=$request->get('problema');
+
+        $Equipo->save();
+        $Equipo = Equipo::latest('id')->first();
+        return view('recepcion.show',compact('Equipo'))->with('success', 'Cliente creado correctamente.');
+    }
+
+
     }
 
     /**
@@ -52,7 +92,8 @@ class EquipoController extends Controller
      */
     public function show($id)
     {
-        //
+        $Equipo = Equipo::find($id);
+        return view('recepcion.show',compact('Equipo'));
     }
 
     /**
@@ -64,7 +105,7 @@ class EquipoController extends Controller
     public function edit($id)
     {
         $equipo = Equipo::find($id);
-        return view('equipo.edit')->with('equipo',$equipo);
+        return view('recepcion.modal.edit')->with('cliente',$cliente);
     }
 
     /**
@@ -76,11 +117,7 @@ class EquipoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $equipo = Equipo::find($id);
-        $equipo->descripcion =$request->get('nombre');
-        $equipo->save();
-
-        return redirect('/equipo'); 
+        //
     }
 
     /**
@@ -91,9 +128,6 @@ class EquipoController extends Controller
      */
     public function destroy($id)
     {
-        $equipo = Equipo::findOrFail($id);
-        $equipo->delete();
-
-        return redirect('/equipo')->with('success', 'empleado eliminado correctamente.');;
+        //
     }
 }
